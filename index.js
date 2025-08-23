@@ -17,12 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-// app.use(express.urlencoded());
 app.use(cookieParser());
-
-// const store_id = 'elect671ce752b3f2b';
-// const store_passwd = 'elect671ce752b3f2b@ssl';
-// const is_live = false;  // Set to true for production
 
 const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_SECRET_API_KEY}@cluster0.mbvqn67.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(uri, {
