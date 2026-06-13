@@ -10,7 +10,12 @@ const app = express();
 
 // middle ware
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://localhost:5174"],
+  origin: [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "https://electro-mart-49304.web.app",
+    "https://electro-mart-49304.firebaseapp.com",
+  ],
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -19,10 +24,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_SECRET_API_KEY}@cluster0.mbvqn67.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_SECRET_API_KEY}@cluster0.yyjvuyt.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+// const uri = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_SECRET_API_KEY}@cluster0.mbvqn67.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 const client = new MongoClient(uri, {
-  // Your MongoDB client options here
-
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -32,35 +36,35 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
-    const productCollection = client.db("ElectroMart").collection("products");
-    const cartCollection = client.db("ElectroMart").collection("carts");
-    const userCollection = client.db("ElectroMart").collection("users");
-    const compareCollection = client.db("ElectroMart").collection("compares");
-    const wishlistCollection = client.db("ElectroMart").collection("wishlist");
+    const productCollection = client.db("electromart").collection("products");
+    const cartCollection = client.db("electromart").collection("carts");
+    const userCollection = client.db("electromart").collection("users");
+    const compareCollection = client.db("electromart").collection("compares");
+    const wishlistCollection = client.db("electromart").collection("wishlist");
     const categoryCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("categories");
-    const storeCollection = client.db("ElectroMart").collection("stores");
+    const storeCollection = client.db("electromart").collection("stores");
     const promotionCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("promotions");
-    const reviewCollection = client.db("ElectroMart").collection("reviews");
-    // const checkoutCollection = client.db("ElectroMart").collection("order");
-    const sliderCollection = client.db("ElectroMart").collection("sliders");
+    const reviewCollection = client.db("electromart").collection("reviews");
+    // const checkoutCollection = client.db("electromart").collection("order");
+    const sliderCollection = client.db("electromart").collection("sliders");
     const rightTopSliderCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("rightTopSliders");
     const rightBottomLCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("rightBottomLSliders");
     const rightBottomRCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("rightBottomRSliders");
-    const locationCollection = client.db("ElectroMart").collection("location");
+    const locationCollection = client.db("electromart").collection("location");
     const paymentHoldingCollection = client
-      .db("ElectroMart")
+      .db("electromart")
       .collection("paymentHolder");
-    const ordersCollection = client.db("ElectroMart").collection("orders");
+    const ordersCollection = client.db("electromart").collection("orders");
 
     // ========================================   product collection start    ========================================
     app.get("/products", async (req, res) => {
